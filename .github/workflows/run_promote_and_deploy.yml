@@ -1,0 +1,11 @@
+name: Sample GitHub Workflow
+run-name: Promote & Deploy 
+on:
+  workflow_dispatch:
+      
+jobs:
+  Deploy-to-Prod:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: curl -X POST -d api_key=${{ secrets.API_KEY }} -d environment=production -d sha=${{ github.sha }} https://app.sleuth.io/api/1/deployments/lem00r/sleuth-actions/register_deploy
