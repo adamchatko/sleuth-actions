@@ -17,6 +17,5 @@ rules:
                   channel: 'C057ZU831KL' #sleuth-actions on KingJulian
                   message: 'Deployment of {{ deploy_slack }} to `preprod` has been approved!'
               - trigger_build:
-                  revision: "{{revision}}"
                   parameters:
                     name: 'run_promote_and_deploy.yml'
