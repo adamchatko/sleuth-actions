@@ -1,0 +1,23 @@
+rules:
+  - preprod-approval-rule:
+      conditions:
+        - environment='production'
+      actions:
+        - slack_channel_approval:
+            name: 'preprod-promote-and-deploy'
+            prompt: 'Deployment of {{ deploy_slack }} to `preprod` requires approval. Rollback procedure is to deploy the last successful release.'
+            channel: 'C057ZU831KL' #sleuth-actions on KingJulian
+            votes_required: 1
+            authors_only: false
+            approvers:
+              - ajulian@sleuth.io
+              - adam@julian.si
+            on_success:
+              - slack_channel_message:
+                  channel: 'C057ZU831KL' #sleuth-actions on KingJulian
+                  message: 'Deployment of {{ deploy_slack }} to `preprod` has been approved!'
+              - trigger_build:
+                  revision: "{{revision}}"
+                  parameters:
+                    run_promote_and_deploy: true
+                    environment: preprod
