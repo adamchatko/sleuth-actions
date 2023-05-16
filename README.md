@@ -1,2 +1,2 @@
-# sleuth-actions
+# Sleuth Actions
 Dedicated repository for testing Sleuth Actions
