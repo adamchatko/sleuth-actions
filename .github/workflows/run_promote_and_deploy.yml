@@ -1,10 +1,7 @@
 name: Sample GitHub Workflow
 run-name: Promote & Deploy 
 on:
-  workflow_call:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
       
 jobs:
   Deploy-to-Prod:
