@@ -1,7 +1,7 @@
 rules:
   - preprod-approval-rule:
       conditions:
-        - environment='production'
+        - environment='preprod'
       actions:
         - slack_channel_approval:
             name: 'preprod-promote-and-deploy'
