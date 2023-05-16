@@ -19,5 +19,4 @@ rules:
               - trigger_build:
                   revision: "{{revision}}"
                   parameters:
-                    run_promote_and_deploy: true
-                    environment: preprod
+                    name: 'run_promote_and_deploy.yml'
