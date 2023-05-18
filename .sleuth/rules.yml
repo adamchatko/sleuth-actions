@@ -19,3 +19,21 @@ rules:
               - trigger_build:
                   parameters:
                     name: 'run_promote_and_deploy.yml'
+  - promote-staging-to-prod-notify:
+      conditions:
+        - environment='production'
+      actions:
+        - add_to_deploy_message_thread: Please vote to approve +/-1 to promote this deployment {{slack_mention_authors}}
+  - promote-staging-to-prod-on-approval:
+      conditions:
+        - environment='production'
+        - health='Healthy'
+        - deployed_for>='1m'
+        - deploy_message_reaction_plus_1>=1
+        - deploy_message_reaction_minus_1=0
+      actions:
+      - trigger_build:
+          parameters:
+            name: 'release-it.yml'
+            tags: '{{tags}}'
+            deployment: '{{deployment}}'
