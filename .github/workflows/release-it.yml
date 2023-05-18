@@ -1,0 +1,14 @@
+name: Release It
+
+on:
+  workflow_dispatch:
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+    - shell: bash
+      run: |
+        echo "### CALLED BY SLEUTH" >> $GITHUB_STEP_SUMMARY
+        echo "Tags: ${{ github.event.inputs.tags }}" >> $GITHUB_STEP_SUMMARY
+        echo "Deployment: ${{ github.event.inputs.deployment }}" >> $GITHUB_STEP_SUMMARY
